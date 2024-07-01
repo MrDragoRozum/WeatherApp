@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("plugin.serialization")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -30,17 +32,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_19
+        targetCompatibility = JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "19"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -50,6 +52,28 @@ android {
 }
 
 dependencies {
+
+    implementation (libs.mvikotlin)
+    implementation (libs.mvikotlin.main)
+    implementation (libs.mvikotlin.extensions.coroutines)
+    implementation (libs.mvikotlin.logging)
+
+    implementation("com.arkivanov.decompose:decompose:3.0.0")
+    implementation("com.arkivanov.decompose:extensions-compose:3.0.0")
+
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.dagger)
+    ksp(libs.dagger.compiler)
+
+    implementation(libs.glide)
+
+    implementation(libs.retrofit)
+
+    implementation(libs.retrofit2.converter.kotlinx.serialization)
+
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
