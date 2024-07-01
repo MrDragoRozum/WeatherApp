@@ -1,4 +1,4 @@
-package ru.rozum.weatherapp.ui.theme
+package ru.rozum.weatherapp.presentation.theme
 
 import android.app.Activity
 import android.os.Build
