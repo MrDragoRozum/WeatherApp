@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import ru.rozum.weatherapp.data.local.model.CityDbModel
 
 @Dao
-interface FavouriteCitiesDto {
+interface FavouriteCitiesDao {
 
     @Query("SELECT * FROM favourite_cities")
     fun getFavouriteCities(): Flow<List<CityDbModel>>

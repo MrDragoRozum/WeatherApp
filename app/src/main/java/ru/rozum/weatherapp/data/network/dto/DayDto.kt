@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DayDto(
-    @SerialName("date_epoch") val date: Float,
+    @SerialName("date_epoch") val date: Long,
     @SerialName("day") val dayWeatherDto: DayWeatherDto,
+
 )

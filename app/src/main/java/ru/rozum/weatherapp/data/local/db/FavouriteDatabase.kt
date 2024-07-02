@@ -9,7 +9,7 @@ import ru.rozum.weatherapp.data.local.model.CityDbModel
 @Database(entities = [CityDbModel::class], version = 1, exportSchema = false)
 abstract class FavouriteDatabase: RoomDatabase() {
 
-    abstract fun favouriteCitiesDao(): FavouriteCitiesDto
+    abstract fun favouriteCitiesDao(): FavouriteCitiesDao
 
     companion object {
         private const val DB_NAME = "FavouriteDatabase"
