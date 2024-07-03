@@ -19,7 +19,7 @@ class DefaultSearchComponent @AssistedInject constructor(
     @Assisted("onBackClick") private val onBackClick: () -> Unit,
     @Assisted("onCitySavedToFavourite") private val onCitySavedToFavourite: () -> Unit,
     @Assisted("onForecastForCityRequested") private val onForecastForCityRequested: (City) -> Unit,
-    componentContext: ComponentContext
+    @Assisted("componentContext") componentContext: ComponentContext
 ) : SearchComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore { storeFactory.create(openReason) }
@@ -56,6 +56,7 @@ class DefaultSearchComponent @AssistedInject constructor(
             @Assisted("onBackClick") onBackClick: () -> Unit,
             @Assisted("onCitySavedToFavourite") onCitySavedToFavourite: () -> Unit,
             @Assisted("onForecastForCityRequested") onForecastForCityRequested: (City) -> Unit,
+            @Assisted("componentContext") componentContext: ComponentContext
         ): DefaultSearchComponent
     }
 }
