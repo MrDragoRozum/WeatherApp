@@ -12,24 +12,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.arkivanov.decompose.defaultComponentContext
 import kotlinx.coroutines.launch
+import ru.rozum.weatherapp.WeatherApp
 import ru.rozum.weatherapp.data.network.api.ApiFactory
+import ru.rozum.weatherapp.domain.entity.Weather
+import ru.rozum.weatherapp.presentation.root.DefaultRootComponent
+import ru.rozum.weatherapp.presentation.root.RootComponent
+import ru.rozum.weatherapp.presentation.root.RootContent
 import ru.rozum.weatherapp.presentation.theme.WeatherAppTheme
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var rootComponentFactory: DefaultRootComponent.Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as WeatherApp).applicationComponent.inject(this)
         super.onCreate(savedInstanceState)
-        val apiService = ApiFactory.apiService
 
-        lifecycleScope.launch {
-            apiService.loadCurrentWeather("London").also { println("Current Weather: $it")}
-            apiService.loadForecast("London").also { println("Forecast Weather: $it")}
-            apiService.searchCity("London").also { println("Cities: $it") }
-
-        }
+        val root = rootComponentFactory.create(defaultComponentContext())
+        
         setContent {
-            WeatherAppTheme {
-            }
+            RootContent(component = root)
         }
     }
 }
