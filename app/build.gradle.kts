@@ -58,6 +58,8 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.material.icons.extended)
+
     implementation (libs.mvikotlin)
     implementation (libs.mvikotlin.main)
     implementation (libs.mvikotlin.extensions.coroutines)

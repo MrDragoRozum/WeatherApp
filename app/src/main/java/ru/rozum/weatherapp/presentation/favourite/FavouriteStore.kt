@@ -57,7 +57,7 @@ class FavouriteStoreFactory @Inject constructor(
     fun create(): FavouriteStore =
         object : FavouriteStore, Store<Intent, State, Label> by storeFactory.create(
             name = "FavouriteStore",
-            initialState = State(listOf()),
+            initialState = State(emptyList()),
             bootstrapper = BootstrapperImpl(),
             executorFactory = ::ExecutorImpl,
             reducer = ReducerImpl

@@ -17,7 +17,7 @@ class DefaultDetailsComponent @AssistedInject constructor(
     private val storeFactory: DetailsStoreFactory,
     @Assisted("city") city: City,
     @Assisted("componentContext") componentContext: ComponentContext,
-    @Assisted("onClickBack") private val onClickBack: () -> Unit
+    @Assisted("onClickBack") private val onBackClick: () -> Unit
 ) : DetailsComponent,
     ComponentContext by componentContext {
 
@@ -28,7 +28,7 @@ class DefaultDetailsComponent @AssistedInject constructor(
         scope.launch {
             store.labels.collect {
                 when (it) {
-                    DetailsStore.Label.ClickBack -> onClickBack()
+                    DetailsStore.Label.ClickBack -> onBackClick()
                 }
             }
         }
