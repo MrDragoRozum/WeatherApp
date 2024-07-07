@@ -7,10 +7,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create
 import ru.rozum.weatherapp.BuildConfig
+import java.util.Locale
 
 object ApiFactory {
 
     private const val KEY_PARAM = "key"
+    private const val PARAM_LANG = "lang"
     private const val BASE_URL = "https://api.weatherapi.com/v1/"
     private val json = Json {
         isLenient = true
@@ -24,6 +26,7 @@ object ApiFactory {
             val newUrl = originalRequest.url
                 .newBuilder()
                 .addQueryParameter(KEY_PARAM, BuildConfig.WEATHER_API_KEY)
+                .addQueryParameter(PARAM_LANG, Locale.getDefault().language)
                 .build()
 
             val newRequest = originalRequest.newBuilder()
